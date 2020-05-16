@@ -16,17 +16,17 @@ function employee(){
     return inquirer.prompt([
         {
             type: "input",
-            message: "What is your 's name ?",
+            message: `What is your ${}'s name ?`,
             name: "name",
         },
         {
             type: "input",
-            message: "what is your 's ID ?",
+            message: `what is your ${}'s ID ?`,
             name: "id",
         },
         {
             type: "input",
-            message: "What is your 's Email ?",
+            message: `What is your ${}'s Email ?`,
             name: "email",
         }
     ]);
@@ -76,6 +76,17 @@ function teamAdd(){
         }
     ]);
 }
+
+async function init() {
+    try {
+        
+    
+    }
+    catch (err) {
+        console.error(err);
+    }
+}
+
 
 
 // Write code to use inquirer to gather information about the development team members,
