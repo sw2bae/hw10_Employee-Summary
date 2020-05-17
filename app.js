@@ -84,14 +84,11 @@ function teamAdd() {
 async function init() {
     try {
         const employees = [];
-
         let employeeInfo = await employeeInput();
         const managerInfo = await managerInput();
         const manager = new Manager(employeeInfo.name, employeeInfo.id, employeeInfo.email, managerInfo.officeNum);
         employees.push(manager);
-
         let userSelect = await teamAdd();
-
         while (userSelect.add !== "I don't want to add anymore team members") {
             if (userSelect.add === "Engineer") {
                 status = "engineer";
@@ -108,9 +105,10 @@ async function init() {
             }
             userSelect = await teamAdd();
         }
-        console.log(employees);
-        // await writeFileAsync("README.md", markdown);
-        // console.log("***README FILE GENERATED***");
+        // console.log(employees);
+        const renderHTML = render(employees); 
+        await writeFileAsync(outputPath, renderHTML);
+        console.log("***TEAM FILE GENERATED***");
     }
     catch (err) {
         console.error(err);
