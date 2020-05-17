@@ -6,13 +6,10 @@ const path = require("path");
 const fs = require("fs");
 const util = require("util");
 const writeFileAsync = util.promisify(fs.writeFile);
-
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
-
 const render = require("./lib/htmlRenderer");
 var status = "manager"
-
 
 console.log("Please build your team");
 
@@ -35,7 +32,6 @@ function employeeInput() {
         }
     ]);
 };
-
 function managerInput() {
     return inquirer.prompt([
         {
@@ -45,7 +41,6 @@ function managerInput() {
         },
     ]);
 };
-
 function engineerInput() {
     return inquirer.prompt([
         {
@@ -55,7 +50,6 @@ function engineerInput() {
         }
     ]);
 };
-
 function internInput() {
     return inquirer.prompt([
         {
@@ -65,7 +59,6 @@ function internInput() {
         }
     ]);
 };
-
 function teamAdd() {
     return inquirer.prompt([
         {
@@ -80,7 +73,6 @@ function teamAdd() {
         }
     ]);
 }
-
 async function init() {
     try {
         const employees = [];
@@ -106,7 +98,7 @@ async function init() {
             userSelect = await teamAdd();
         }
         // console.log(employees);
-        const renderHTML = render(employees); 
+        const renderHTML = render(employees);
         await writeFileAsync(outputPath, renderHTML);
         console.log("***TEAM FILE GENERATED***");
     }
@@ -114,7 +106,6 @@ async function init() {
         console.error(err);
     }
 }
-
 init();
 
 
